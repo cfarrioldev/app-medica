@@ -21,19 +21,24 @@
     "typeorm:cli": "ts-node .\\node_modules\\typeorm\\cli.js -d .\\data-source.ts",
     "mig:gen": "npm run typeorm:cli -- migration:generate .\\src\\migrations\\CreateUser",
     "mig:run": "npm run typeorm:cli -- migration:run",
-    "mig:revert": "npm run typeorm:cli -- migration:revert"
+    "mig:revert": "npm run typeorm:cli -- migration:revert",
+    "seed": "ts-node -r tsconfig-paths/register ./database/seed.ts"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.9.0",
     "@nestjs/common": "^11.0.1",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.0.1",
     "@nestjs/platform-express": "^11.0.1",
     "@nestjs/typeorm": "^11.0.0",
+    "@types/bcrypt": "^6.0.0",
+    "bcrypt": "^6.0.0",
     "dotenv": "^17.2.2",
     "mysql2": "^3.15.0",
     "pg": "^8.16.3",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "typeorm-extension": "^3.7.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
