@@ -1,7 +1,6 @@
-import { DataSource } from 'typeorm';
-import * as dotenv from 'dotenv';
-
-dotenv.config();
+import { DataSource, DataSourceOptions } from 'typeorm';
+import 'dotenv/config';
+import { SeederOptions } from 'typeorm-extension';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
@@ -13,4 +12,7 @@ export const AppDataSource = new DataSource({
   entities: ['src/**/*.entity.ts'],   // <- patrón seguro
   migrations: ['src/migrations/*.ts'],
   synchronize: false,
-});
+  factories: ['database/factories/**/*{.ts,.js}'],
+  seeds: ['database/seeds/**/*{.ts,.js}'],
+} as DataSourceOptions & SeederOptions);
+
