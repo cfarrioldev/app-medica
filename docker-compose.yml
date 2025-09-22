@@ -1,0 +1,38 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: mediflow-db
+    environment:
+      POSTGRES_USER: mediflow-db
+      POSTGRES_PASSWORD: 9413
+      POSTGRES_DB: mediflow
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app -d mediflow"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: ./mediflow-back
+      dockerfile: Dockerfile
+    container_name: mediflow-api
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: app
+      DB_PASS: app
+      DB_NAME: mediflow
+    ports:
+      - "3000:3000"
+
+volumes:
+  db-data:
