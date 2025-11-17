@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { HealthService } from './core/services/health.service';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +10,8 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'mediflow-front';
+  private healthService: HealthService = inject(HealthService)
+  ngOnInit() {
+   this.healthService.ping().subscribe(console.log)
+  }
 }
