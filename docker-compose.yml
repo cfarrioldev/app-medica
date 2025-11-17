@@ -28,8 +28,8 @@ services:
       NODE_ENV: production
       DB_HOST: postgres
       DB_PORT: 5432
-      DB_USER: app
-      DB_PASS: app
+      DB_USER: mediflow-db
+      DB_PASS: 9413
       DB_NAME: mediflow
     ports:
       - "3000:3000"
