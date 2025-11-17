@@ -9,7 +9,7 @@ services:
     ports:
       - "5432:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U app -d mediflow"]
+      test: ["CMD-SHELL", "pg_isready -U mediflow-db -d mediflow"]
       interval: 5s
       timeout: 3s
       retries: 10
